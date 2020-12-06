@@ -41,12 +41,21 @@ const getdefaultSummaryData = async(user_id) => {
     const res_week = await executeQuery(query, user_id, '7');
     const row_week = res_week.rowsOfObjects()[0];
     
+    const res_month = await executeQuery(query, user_id, '30');
+    const row_month = res_month.rowsOfObjects()[0];
+
     const data = {
         sleep_duration_week_avg: row_week.sleep_duration_avg,
         sport_time_week_avg: row_week.sport_time_avg,
         study_time_week_avg: row_week.study_time_avg,
         sleep_quality_week_avg: row_week.sleep_quality_avg,
-        mood_week_avg: row_week.mood_avg
+        mood_week_avg: row_week.mood_avg,
+
+        sleep_duration_month_avg: row_month.sleep_duration_avg,
+        sport_time_month_avg: row_month.sport_time_avg,
+        study_time_month_avg: row_month.study_time_avg,
+        sleep_quality_month_avg: row_month.sleep_quality_avg,
+        mood_month_avg: row_month.mood_avg
     }
 
     return data;

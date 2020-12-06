@@ -28,8 +28,8 @@ const postLoginForm = async({render, request, response, session}) => {
             id: login_data.id,
             email: login_data.email
         });
-        //response.body = `"<HTML><body><p>Authentication successful!</p> <a href="/behavior/reporting">Reporting</a></body></HTML>"`
-        response.body = 'Authentication successful!';
+        //alert("Authentication successful!");
+        response.redirect('/behavior/reporting');
     }
     
 }
