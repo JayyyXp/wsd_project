@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <script src="/static/get_today.js" defer></script>
+  </head>
+  <body>
+        <div id="container">
+
+            <h1>Reporting!</h1> 
+
+            <%- include('./partials/error_partial.ejs') %>
+            
+            <h2>Morning reporting</h2>
+            <form method="POST" action="/behavior/reporting/morning">
+                <label for="date">date</label>
+                <input type="date" name="date" class="date_today">
+
+                <label for="sleep_duration">sleep duration</label>
+                <input type="number" name="sleep_duration" min="0" max="24" step=".0001" value="0">
+
+                <label for="sleep_quality">sleep quality</label>
+                <input type="number" name="sleep_quality" min="1" max="5" value="1" step="1">
+
+                <label for="mood">generic mood</label>
+                <input type="number" name="mood" min="1" max="5" value="1" step="1">
+
+                <input type="submit" value="Submit!" />
+            </form>
+
+            <h2>Evening reporting</h2>
+            <form method="POST" action="/behavior/reporting/evening">
+              <label for="date">date</label>
+              <input type="date" name="date" class="date_today">
+
+              <label for="sport_time">time spent on sports and exercise</label>
+              <input type="number" name="sport_time" min="0" max="24" step=".0001" value="0">
+
+              <label for="study_time">time spent studying</label>
+              <input type="number" name="study_time" min="0" max="24" step=".0001" value="0">
+
+              <label for="eating">regularity and quality of eating</label>
+              <input type="number" name="eating" min="1" max="5" value="1" step="1">
+
+              <label for="mood">generic mood</label>
+              <input type="number" name="mood" min="1" max="5" value="1" step="1">
+
+              <input type="submit" value="Submit!" />
+          </form>
+        </div>
+    </body>
+</html>
