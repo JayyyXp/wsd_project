@@ -111,4 +111,58 @@ const getWeekSummaryData = async(user_id, week, year) => {
 
     return data;
 }
-export { getdefaultSummaryData, getWeekSummaryData }
+
+const getMonthSummaryData = async(user_id, month, year) => {
+
+    const query = `
+    WITH morning_avg AS(
+        SELECT 
+            AVG(sleep_duration) AS sleep_duration_avg,
+            AVG(sleep_quality) AS sleep_quality_avg,
+            AVG(morning_mood) AS morning_mood_avg 
+        FROM 
+            morning 
+        WHERE 
+            morning.user_id = $1 
+            AND EXTRACT(MONTH FROM morning.date) = $2
+            AND EXTRACT(YEAR FROM morning.date) = $3
+    ), evening_avg AS (
+        SELECT 
+            AVG(sport_time) AS sport_time_avg,
+            AVG(study_time) AS study_time_avg,
+            AVG(evening_mood) AS evening_mood_avg 
+        FROM 
+            evening 
+        WHERE 
+            evening.user_id = $1
+            AND EXTRACT(MONTH FROM evening.date) = $2
+            AND EXTRACT(YEAR FROM evening.date) = $3
+    )
+    
+    SELECT 
+        sleep_duration_avg,
+        sport_time_avg,
+        study_time_avg,
+        sleep_quality_avg,
+        (morning_mood_avg::decimal + evening_mood_avg ::decimal) / 2 AS mood_avg
+    FROM
+        morning_avg, evening_avg
+    `;
+
+    const res_month = await executeQuery(query, user_id, month, year);
+    const row_month = res_month.rowsOfObjects()[0];
+
+    const data = {
+        sleep_duration_month_avg: row_month.sleep_duration_avg,
+        sport_time_month_avg: row_month.sport_time_avg,
+        study_time_month_avg: row_month.study_time_avg,
+        sleep_quality_month_avg: row_month.sleep_quality_avg,
+        mood_month_avg: row_month.mood_avg
+    }
+
+    return data;
+}
+
+
+
+export { getdefaultSummaryData, getWeekSummaryData, getMonthSummaryData }

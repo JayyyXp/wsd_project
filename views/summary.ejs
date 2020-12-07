@@ -3,7 +3,7 @@
   <head>
     <title>Title</title>
     <meta charset="utf-8">
-    <script src="/static/get_today_week.js" defer></script>
+    <script src="/static/get_today_week_month.js" defer></script>
   </head>
   <body>
         <div id="container">
@@ -33,6 +33,13 @@
 
             <h2>Monthly average:</h2>
             <h3> <%= month_summary %></h3>
+
+            <form method="POST" action="/behavior/summary/month">
+                <label for="month">Get summary for month</label>
+                <input type="month" name="month" id="month">
+
+                <input type="submit" value="Submit!" />
+            </form>
 
             <% if (month.sleep_duration_month_avg) { %>
                 <ul>

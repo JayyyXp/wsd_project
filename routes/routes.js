@@ -25,5 +25,6 @@ router.post('/behavior/reporting/evening', reportingeveningcontroller.postReport
 
 router.get('/behavior/summary', reportingsummarycontroller.showSummaryForm);
 router.post('/behavior/summary/week', reportingsummarycontroller.showSummaryWeekForm);
+router.post('/behavior/summary/month', reportingsummarycontroller.showSummaryMonthForm);
 
 export { router };

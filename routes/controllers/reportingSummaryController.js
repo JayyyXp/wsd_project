@@ -35,10 +35,9 @@ const showSummaryWeekForm = async({render, request, session}) => {
 
     const user = await session.get('user');
     const week = params.get('week'); //2020-W50
-    const week_parts = week.split("-W")
+    const week_parts = week.split("-W");
 
     const week_data = await service.getWeekSummaryData(user.id, week_parts[1], week_parts[0]);
-    console.log(week_data);
 
     const data = {
         week_summary: `week ${week_parts[1]} year ${week_parts[0]}`,
@@ -55,8 +54,39 @@ const showSummaryWeekForm = async({render, request, session}) => {
             sleep_duration_month_avg: null
         }
     }
-    console.log(data);
+
     render('summary.ejs', data);
 }
 
-export { showSummaryForm, showSummaryWeekForm }
+const showSummaryMonthForm = async({render, request, session}) => {
+    const body = request.body();
+    const params = await body.value;
+
+    const user = await session.get('user');
+    const month = params.get('month'); //'1978-06'
+    const month_parts = month.split("-");
+
+    console.log(month);
+
+    const month_data = await service.getMonthSummaryData(user.id, month_parts[1], month_parts[0]);
+
+    const data = {
+        week_summary: 'not selected',
+        month_summary: `month ${month_data[1]} year ${month_data[0]}`,
+        
+        week: {
+            sleep_duration_week_avg: null
+        },
+        month: {
+            sleep_duration_month_avg: month_data.sleep_duration_month_avg,
+            sport_time_month_avg: month_data.sport_time_month_avg,
+            study_time_month_avg: month_data.study_time_month_avg,
+            sleep_quality_month_avg: month_data.sleep_quality_month_avg,
+            mood_month_avg: month_data.mood_month_avg
+        }
+    }
+
+    render('summary.ejs', data);
+}
+
+export { showSummaryForm, showSummaryWeekForm, showSummaryMonthForm }
