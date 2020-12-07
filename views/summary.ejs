@@ -1,25 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <script src="/static/get_today_week.js" defer></script>
+  </head>
+  <body>
+        <div id="container">
+            <h1>Summary!</h1>
 
-<h1>Summary!</h1>
+            <h2>Weekly average:</h2>
+            <h3><%= week_summary %></h3>
 
-<h2>Weekly average for <%= week_summary %> </h2>
+            <form method="POST" action="/behavior/summary/week">
+                <label for="week">Get summary for week</label>
+                <input type="week" name="week" id="week">
 
-<ul>
-    <li>Average sleep duration: <%= sleep_duration_week_avg %> </li>
-    <li>Average time spent on sports and exercise: <%= sport_time_week_avg %> </li>
-    <li>Average time spent studying: <%= study_time_week_avg %> </li>
-    <li>Average sleep quality: <%= sleep_quality_week_avg %> </li>
-    <li>Average generic mood: <%= mood_week_avg %>  </li>
-</ul>
+                <input type="submit" value="Submit!" />
+            </form>
 
-<h2>Monthly average for <%= month_summary %> </h2>
+            <% if (week.sleep_duration_week_avg) { %>
+                <ul>
+                    <li>Average sleep duration: <%= week.sleep_duration_week_avg %> </li>
+                    <li>Average time spent on sports and exercise: <%= week.sport_time_week_avg %> </li>
+                    <li>Average time spent studying: <%= week.study_time_week_avg %> </li>
+                    <li>Average sleep quality: <%= week.sleep_quality_week_avg %> </li>
+                    <li>Average generic mood: <%= week.mood_week_avg %>  </li>
+                </ul>
+            <% } else { %>
+                <p>No week summary to show</p>
+            <% } %>
 
-<ul>
-    <li>Average sleep duration: <%= sleep_duration_month_avg %> </li>
-    <li>Average time spent on sports and exercise: <%= sport_time_month_avg %> </li>
-    <li>Average time spent studying: <%= study_time_month_avg %> </li>
-    <li>Average sleep quality: <%= sleep_quality_month_avg %> </li>
-    <li>Average generic mood: <%= mood_month_avg %>  </li>
-</ul>
+            <h2>Monthly average:</h2>
+            <h3> <%= month_summary %></h3>
 
-<a href="/behavior/reporting">report</a>
-<a href="/auth/login">login</a>
+            <% if (month.sleep_duration_month_avg) { %>
+                <ul>
+                    <li>Average sleep duration: <%= month.sleep_duration_month_avg %> </li>
+                    <li>Average time spent on sports and exercise: <%= month.sport_time_month_avg %> </li>
+                    <li>Average time spent studying: <%= month.study_time_month_avg %> </li>
+                    <li>Average sleep quality: <%= month.sleep_quality_month_avg %> </li>
+                    <li>Average generic mood: <%= month.mood_month_avg %>  </li>
+                </ul>
+            <% } else { %>
+                <p>No month summary to show</p>
+            <% } %>
+
+            <a href="/behavior/reporting">report</a>
+            <a href="/auth/login">login</a>
+        </div>
+    </body>
+</html>
