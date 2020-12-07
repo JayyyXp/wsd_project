@@ -5,6 +5,7 @@ import * as reportingcontroller from "./controllers/reportingController.js";
 import * as reportingmorningcontroller from "./controllers/reportingMorningController.js";
 import * as reportingeveningcontroller from "./controllers/reportingEveningController.js";
 import * as reportingsummarycontroller from "./controllers/reportingSummaryController.js";
+import * as landingcontroller from "./controllers/landingController.js";
 
 import * as helloApi from "./apis/api.js";
 
@@ -26,5 +27,7 @@ router.post('/behavior/reporting/evening', reportingeveningcontroller.postReport
 router.get('/behavior/summary', reportingsummarycontroller.showSummaryForm);
 router.post('/behavior/summary/week', reportingsummarycontroller.showSummaryWeekForm);
 router.post('/behavior/summary/month', reportingsummarycontroller.showSummaryMonthForm);
+
+router.get('/', landingcontroller.showLandingPage);
 
 export { router };
