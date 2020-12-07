@@ -38,28 +38,18 @@ const accessControlsMiddleware = async({request, response, session}, next) => {
   const pathname = request.url.pathname;
   const auth_ok = (await session.get('authenticated'));
   
-  let need_auth = false;
-  if (!pathname.startsWith('/')){
-    need_auth = true;
-  } else {
-    need_auth = false;
-  }
-  if (!pathname.startsWith('/api')){
-    need_auth = true;
-  } else {
-    need_auth = false;
-  }
-  if (!pathname.startsWith('/auth')){
-    need_auth = true;
-  } else {
-    need_auth = false;
-  }
 
   // if is other than root, api, auth then auth has to be ok
-  if ( need_auth && !auth_ok ) {
-    response.redirect('/auth/login');
-  } else {
+  if ( pathname === '/'  ) {
     await next();
+  } else if ( pathname.startsWith('/api') ) {
+    await next();
+  } else if ( pathname.startsWith('/auth') ){
+    await next();
+  } else if ( auth_ok ) {
+    await next();
+  } else {
+    response.redirect('/auth/login');
   }
 };
 

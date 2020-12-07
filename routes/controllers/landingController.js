@@ -1,8 +1,28 @@
+import * as service from "../../services/landingServices.js";
 
 
 const showLandingPage = async({render}) => {
 
-    render('landing.ejs');
+    const today = new Date();
+    const date_today = `${today.getFullYear()}-${today.getMonth() + 1}-${String(today.getDate()).padStart(2, '0')}`;
+    
+    const yesterday = new Date(today);
+    yesterday.setDate(yesterday.getDate() - 1);
+    const date_yesterday = `${yesterday.getFullYear()}-${yesterday.getMonth() + 1}-${String(yesterday.getDate()).padStart(2, '0')}`;
+
+
+    const res_today = await service.getAvgMoodForDay(date_today);
+    const res_yesterday = await service.getAvgMoodForDay(date_yesterday);
+
+    const message =  (res_today >= res_yesterday) ? 'things are looking bright today' : 'things are looking gloomy today';
+
+    console.log(res_today.day_mood_avg);
+    const data = {
+        day_mood_avg: res_today.day_mood_avg,
+        res_yesterday: res_yesterday.day_mood_avg,
+        message: message
+    }
+    render('landing.ejs', data);
 }
 
 export { showLandingPage }
