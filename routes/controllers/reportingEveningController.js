@@ -21,7 +21,7 @@ const postReportingEveningForm = async({session, render, request, response}) => 
 
     await service.addReportEveningToEveningTable(user_id, sport_time, study_time, eating, mood, date);
 
-    render('reporting.ejs', {errors: errors});
+    render('reporting.ejs', {errors: errors, log_email: user.email});
     //response.redirect('/behavior/reporting');
 }
 

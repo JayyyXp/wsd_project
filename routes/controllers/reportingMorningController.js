@@ -21,7 +21,7 @@ const postReportingMorningForm = async({session, render, request, response}) => 
 
     await service.addReportMorningToMorningTable(user_id, sleep_duration, sleep_quality, mood, date);
 
-    render('reporting.ejs', {errors: errors});
+    render('reporting.ejs', {errors: errors, log_email: user.email});
     //response.redirect('/behavior/reporting');
 }
 

@@ -2,8 +2,17 @@ import * as service from "../../services/authServices.js";
 import { bcrypt } from "../../deps.js";
 
 
-const showLoginForm = ({render}) => {
-    render('login.ejs', {errors: []});
+const showLoginForm = async({render, session}) => {
+    const data = {
+        errors: [],        
+        log_email: null
+    }
+    const user = await session.get('user');
+    if (user){
+        data.log_email = user.email; 
+    }
+    
+    render('login.ejs', data);
 }
 
 const postLoginForm = async({render, request, response, session}) => {
@@ -17,7 +26,8 @@ const postLoginForm = async({render, request, response, session}) => {
     const login_data = await service.validateLoginData(email, password);
 
     const data = {
-        errors: login_data.errors
+        errors: login_data.errors,
+        log_email: email
     }
     
     if (data.errors.length > 0) {
@@ -42,7 +52,8 @@ const postLogoutForm = async({render, session, response}) => {
         response.body = 'Logout successful!';
     } else {
         const data = {
-            errors: ['You are not logged in']
+            errors: ['You are not logged in'],
+            log_email: null
         }
         render('login.ejs', data);
     }

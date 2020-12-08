@@ -2,8 +2,20 @@ import * as service from "../../services/userServices.js";
 import { bcrypt } from "../../deps.js";
 
 
-const showRegistrationForm = ({render}) => {
-    render('register.ejs', {email: '', errors: []});
+const showRegistrationForm = async({render, session}) => {
+
+    const data = {
+      errors: [],
+      email: '',
+      log_email: null
+    }
+
+    const user = await session.get('user');
+    if (user){
+        data.log_email = user.email; 
+    }
+
+    render('register.ejs', data);
 }
 
 const postRegistrationForm = async({render, request, response}) => {
@@ -17,8 +29,15 @@ const postRegistrationForm = async({render, request, response}) => {
 
     const data = {
       email: email,
-      errors: await service.validateUserData(email, password, verification)
+      errors: await service.validateUserData(email, password, verification),
+      log_email: null
     }
+
+    const user = await session.get('user');
+    if (user){
+        data.log_email = user.email; 
+    }
+
   
     if(data.errors.length > 0){
         render('register.ejs', data);

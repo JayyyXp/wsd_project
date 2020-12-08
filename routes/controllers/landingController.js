@@ -1,7 +1,7 @@
 import * as service from "../../services/landingServices.js";
 
 
-const showLandingPage = async({render}) => {
+const showLandingPage = async({render, session}) => {
 
     const today = new Date();
     const date_today = `${today.getFullYear()}-${today.getMonth() + 1}-${String(today.getDate()).padStart(2, '0')}`;
@@ -20,8 +20,15 @@ const showLandingPage = async({render}) => {
     const data = {
         day_mood_avg: res_today.day_mood_avg,
         res_yesterday: res_yesterday.day_mood_avg,
-        message: message
+        message: message,
+        log_email: null
     }
+
+    const user = await session.get('user');
+    if (user){
+        data.log_email = user.email; 
+    }
+
     render('landing.ejs', data);
 }
 

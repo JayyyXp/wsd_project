@@ -23,7 +23,8 @@ const showSummaryForm = async({render, session}) => {
             study_time_month_avg: (default_data.study_time_month_avg) ? default_data.study_time_month_avg : 'not found',
             sleep_quality_month_avg: (default_data.sleep_quality_month_avg) ? default_data.sleep_quality_month_avg : 'not found',
             mood_month_avg: (default_data.mood_month_avg) ? default_data.mood_month_avg : 'not found'
-        }
+        },
+        log_email: user.email
     }
 
     render('summary.ejs', data);
@@ -52,7 +53,8 @@ const showSummaryWeekForm = async({render, request, session}) => {
         },
         month: {
             sleep_duration_month_avg: null
-        }
+        },
+        log_email: user.email
     }
 
     render('summary.ejs', data);
@@ -81,7 +83,8 @@ const showSummaryMonthForm = async({render, request, session}) => {
             study_time_month_avg: (month_data.study_time_month_avg) ? month_data.study_time_month_avg : 'not found',
             sleep_quality_month_avg: (month_data.sleep_quality_month_avg) ? month_data.sleep_quality_month_avg : 'not found',
             mood_month_avg: (month_data.mood_month_avg) ? month_data.mood_month_avg : 'not found'
-        }
+        },
+        log_email: user.email
     }
 
     render('summary.ejs', data);

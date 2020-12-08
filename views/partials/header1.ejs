@@ -1,4 +1,9 @@
     </head>
         <body>
-        <div id="container">
-            <script src="/static/get_user_email.js" defer></script>
+            <% if (log_email) { %>
+                <p>Logged in as: <%= log_email %> </p>
+            <% } else {%>
+                <p>Anonymous</p>
+            <% } %>
+            <div id="container">
+                <script src="/static/get_user_email.js" defer></script>

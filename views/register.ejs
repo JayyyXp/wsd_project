@@ -6,16 +6,18 @@
             <%- include('./partials/error_partial.ejs') %>
 
             <form method="POST" action="/auth/register">
-                <label for="email">email</label>
-                <input type="email" name="email" value="<%= email %>" style="margin-right: 10px;"/>
-                
-                <label for="password">password</label>
-                <input type="password" name="password" style="margin-right: 10px;"/>
-                
-                <label for="verification">password verification</label>
-                <input type="password" name="verification" style="margin-right: 10px;"/>
-                
-                <input type="submit" value="Submit!" style="margin-right: 10px;"/>
+                <div style="margin-top: 15px;">
+                    <label for="email">email</label>
+                    <input type="email" name="email" value="<%= email %>" />
+                    
+                    <label for="password">password</label>
+                    <input type="password" name="password" />
+                    
+                    <label for="verification">password verification</label>
+                    <input type="password" name="verification" />
+                </div>
+
+                <input type="submit" value="Submit!" />
             </form>
 
             <form action="/auth/login" style="margin-top: 20px;">
