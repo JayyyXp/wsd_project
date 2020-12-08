@@ -7,7 +7,7 @@ import * as reportingeveningcontroller from "./controllers/reportingEveningContr
 import * as reportingsummarycontroller from "./controllers/reportingSummaryController.js";
 import * as landingcontroller from "./controllers/landingController.js";
 
-import * as helloApi from "./apis/api.js";
+import * as api from "./apis/api.js";
 
 const router = new Router();
 
@@ -29,5 +29,8 @@ router.post('/behavior/summary/week', reportingsummarycontroller.showSummaryWeek
 router.post('/behavior/summary/month', reportingsummarycontroller.showSummaryMonthForm);
 
 router.get('/', landingcontroller.showLandingPage);
+
+router.get('/api/summary', api.getAvgLastSevenDay);
+router.get('/api/summary/:year/:month/:day', api.getAvgForDay);
 
 export { router };
