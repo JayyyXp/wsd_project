@@ -7,22 +7,22 @@ const showSummaryForm = async({render, session}) => {
 
     const default_data = await service.getdefaultSummaryData(user.id);
     const data = {
-        week_summary: 'last week',
-        month_summary: 'last month',
+        week_summary: 'last week (7 days)',
+        month_summary: 'last month (30 days)',
         
         week: {
-            sleep_duration_week_avg: default_data.sleep_duration_week_avg,
-            sport_time_week_avg: default_data.sport_time_week_avg,
-            study_time_week_avg: default_data.study_time_week_avg,
-            sleep_quality_week_avg: default_data.sleep_quality_week_avg,
-            mood_week_avg: default_data.mood_week_avg
+            sleep_duration_week_avg: (default_data.sleep_duration_week_avg) ? default_data.sleep_duration_week_avg : 'not found',
+            sport_time_week_avg: (default_data.sport_time_week_avg) ? default_data.sport_time_week_avg : 'not found',
+            study_time_week_avg: (default_data.study_time_week_avg) ? default_data.study_time_week_avg : 'not found',
+            sleep_quality_week_avg: (default_data.sleep_quality_week_avg) ? default_data.sleep_quality_week_avg : 'not found',
+            mood_week_avg: (default_data.mood_week_avg) ? default_data.mood_week_avg : 'not found'
         },
         month: {
-            sleep_duration_month_avg: default_data.sleep_duration_month_avg,
-            sport_time_month_avg: default_data.sport_time_month_avg,
-            study_time_month_avg: default_data.study_time_month_avg,
-            sleep_quality_month_avg: default_data.sleep_quality_month_avg,
-            mood_month_avg: default_data.mood_month_avg
+            sleep_duration_month_avg: (default_data.sleep_duration_month_avg) ? default_data.sleep_duration_month_avg : 'not found',
+            sport_time_month_avg: (default_data.sport_time_month_avg) ? default_data.sport_time_month_avg : 'not found',
+            study_time_month_avg: (default_data.study_time_month_avg) ? default_data.study_time_month_avg : 'not found',
+            sleep_quality_month_avg: (default_data.sleep_quality_month_avg) ? default_data.sleep_quality_month_avg : 'not found',
+            mood_month_avg: (default_data.mood_month_avg) ? default_data.mood_month_avg : 'not found'
         }
     }
 
@@ -44,11 +44,11 @@ const showSummaryWeekForm = async({render, request, session}) => {
         month_summary: 'not selected',
         
         week: {
-            sleep_duration_week_avg: week_data.sleep_duration_week_avg,
-            sport_time_week_avg: week_data.sport_time_week_avg,
-            study_time_week_avg: week_data.study_time_week_avg,
-            sleep_quality_week_avg: week_data.sleep_quality_week_avg,
-            mood_week_avg: week_data.mood_week_avg
+            sleep_duration_week_avg: (week_data.sleep_duration_week_avg) ? week_data.sleep_duration_week_avg : 'not found',
+            sport_time_week_avg: (week_data.sport_time_week_avg) ? week_data.sport_time_week_avg : 'not found',
+            study_time_week_avg: (week_data.study_time_week_avg) ? week_data.study_time_week_avg : 'not found',
+            sleep_quality_week_avg: (week_data.sleep_quality_week_avg) ? week_data.sleep_quality_week_avg : 'not found',
+            mood_week_avg: (week_data.mood_week_avg) ? week_data.mood_week_avg : 'not found'
         },
         month: {
             sleep_duration_month_avg: null
@@ -66,23 +66,21 @@ const showSummaryMonthForm = async({render, request, session}) => {
     const month = params.get('month'); //'1978-06'
     const month_parts = month.split("-");
 
-    console.log(month);
-
     const month_data = await service.getMonthSummaryData(user.id, month_parts[1], month_parts[0]);
 
     const data = {
         week_summary: 'not selected',
-        month_summary: `month ${month_data[1]} year ${month_data[0]}`,
+        month_summary: `month ${month_parts[1]} year ${month_parts[0]}`,
         
         week: {
             sleep_duration_week_avg: null
         },
         month: {
-            sleep_duration_month_avg: month_data.sleep_duration_month_avg,
-            sport_time_month_avg: month_data.sport_time_month_avg,
-            study_time_month_avg: month_data.study_time_month_avg,
-            sleep_quality_month_avg: month_data.sleep_quality_month_avg,
-            mood_month_avg: month_data.mood_month_avg
+            sleep_duration_month_avg: (month_data.sleep_duration_month_avg) ? month_data.sleep_duration_month_avg : 'not found',
+            sport_time_month_avg: (month_data.sport_time_month_avg) ? month_data.sport_time_month_avg : 'not found',
+            study_time_month_avg: (month_data.study_time_month_avg) ? month_data.study_time_month_avg : 'not found',
+            sleep_quality_month_avg: (month_data.sleep_quality_month_avg) ? month_data.sleep_quality_month_avg : 'not found',
+            mood_month_avg: (month_data.mood_month_avg) ? month_data.mood_month_avg : 'not found'
         }
     }
 
