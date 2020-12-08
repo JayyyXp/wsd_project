@@ -29,8 +29,15 @@ const postLoginForm = async({render, request, response, session}) => {
         errors: login_data.errors,
         log_email: email
     }
-    
-    if (data.errors.length > 0) {
+
+    const user = await session.get('user');
+    if(user){
+        if (!user.authenticated){
+            data.errors.push('Already logged in');
+        }
+    }
+    if (data.errors.length > 0 ) {
+        
         render('login.ejs', data);
     } else {
         await session.set('authenticated', true);
@@ -39,7 +46,7 @@ const postLoginForm = async({render, request, response, session}) => {
             email: login_data.email
         });
         //alert("Authentication successful!");
-        response.redirect('/behavior/reporting');
+        response.redirect('/');
     }
     
 }
@@ -49,7 +56,7 @@ const postLogoutForm = async({render, session, response}) => {
     if (await session.get('authenticated')){
         await session.set('authenticated', false);
         await session.set('user', null);
-        response.body = 'Logout successful!';
+        response.redirect('/');
     } else {
         const data = {
             errors: ['You are not logged in'],
