@@ -1,24 +1,32 @@
 import { Client } from "../deps.js";
 import { config, connectionPool } from "../config/config.js";
 
+// For local stuff 
+/* 
 const getClient = () => {
   return new Client(config.database);
 }
+ */
 
-/* const executeQuery = async(query, ...args) => {
-  const client = getClient();
+// For heroku
+
+const DATABASE_URL = Deno.env.toObject().DATABASE_URL;
+const client = new Client(DATABASE_URL);
+
+// for heroku
+const executeQuery = async(query, ...args) => {
   try {
-    await client.connect();
-    return await client.query(query, ...args);
+      await client.connect();
+      return await client.query(query, ...args);
   } catch (e) {
-    console.log(e);
+      console.log(e);
   } finally {
-    await client.end();
+      await client.end();
   }
-} */
+}
 
-
-const executeQuery = async(query, ...params) => {
+// For local
+/* const executeQuery = async(query, ...params) => {
   const client = await connectionPool.connect();
   try {
       return await client.query(query, ...params);
@@ -30,5 +38,5 @@ const executeQuery = async(query, ...params) => {
   
   return null;
 };
-
+ */
 export { executeQuery };
