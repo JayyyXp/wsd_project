@@ -1,14 +1,30 @@
-<h1>Landing page</h1>
-<p>This is a application for logging daily activities</p>
+<%- include('./partials/header0.ejs') %>
+    <%- include('./partials/header1.ejs') %>
+                        
+            <h1>Landing page</h1>
+            <p>This is a application for logging daily activities</p>
 
-<h3>Users average mood</h3>
-<ul>
-    <li>today: <%= day_mood_avg %> </li>
-    <li>yesterday: <%= res_yesterday %> </li>
-</ul>
-<p><%= message %> </p>
+            <h3>Users average mood</h3>
+            <ul>
+                <li>today: <%= day_mood_avg %> </li>
+                <li>yesterday: <%= res_yesterday %> </li>
+            </ul>
+            <p><%= message %> </p>
 
-<a href="/auth/register">register</a>
-<a href="/auth/login">login</a>
-<a href="/behavior/summary">summary</a>
-<a href="/behavior/reporting">reporting</a>
+            <div style="display:flex;margin-top: 20px;">
+                <form action="/auth/register">
+                    <input type="submit" value="Register" style="margin-right: 10px;"/>
+                </form>
+                <form action="/auth/login">
+                    <input type="submit" value="Login" style="margin-right: 10px;"/>
+                </form>
+                <form action="/behavior/summary">
+                    <input type="submit" value="Summary" style="margin-right: 10px;"/>
+                </form>
+                <form action="/behavior/reporting">
+                    <input type="submit" value="Reporting" style="margin-right: 10px;"/>
+
+                </form>
+            </div>
+            
+<%- include('./partials/footer.ejs') %>

@@ -1,56 +1,80 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Title</title>
-    <meta charset="utf-8">
+<%- include('./partials/header0.ejs') %>
+
     <script src="/static/get_today.js" defer></script>
-  </head>
-  <body>
-        <div id="container">
+    <%- include('./partials/header1.ejs') %>
 
             <h1>Reporting!</h1> 
 
             <%- include('./partials/error_partial.ejs') %>
             
             <h2>Morning reporting</h2>
-            <form method="POST" action="/behavior/reporting/morning">
-                <label for="date">date</label>
-                <input type="date" name="date" class="date_today">
-
-                <label for="sleep_duration">sleep duration</label>
-                <input type="number" name="sleep_duration" min="0" max="24" step=".0001" value="0">
-
-                <label for="sleep_quality">sleep quality</label>
-                <input type="number" name="sleep_quality" min="1" max="5" value="1" step="1">
-
-                <label for="mood">generic mood</label>
-                <input type="number" name="mood" min="1" max="5" value="1" step="1">
-
-                <input type="submit" value="Submit!" />
+            <form method="POST" action="/behavior/reporting/morning" >
+                <div style=" display: flex;align-items: center;">
+                    <label for="date">date</label>
+                    <input type="date" name="date" class="date_today" >    
+                </div>
+                
+                <div >
+                    <label for="sleep_duration" >sleep duration</label>
+                    <input type="number" name="sleep_duration" min="0" max="24" step=".0001" value="0" >
+                </div>
+                
+                <div >
+                    <label for="sleep_quality">sleep quality</label>
+                    <input type="number" name="sleep_quality" min="1" max="5" value="1" step="1" >
+                </div>
+                
+                <div >
+                    <label for="mood">generic mood</label>
+                    <input type="number" name="mood" min="1" max="5" value="1" step="1" >
+                </div>
+                
+                <div >
+                    <input type="submit" value="Submit!" />
+                </div>
             </form>
 
             <h2>Evening reporting</h2>
             <form method="POST" action="/behavior/reporting/evening">
-              <label for="date">date</label>
-              <input type="date" name="date" class="date_today">
+                <div style=" display: flex;align-items: center;">
+                    <label for="date">date</label>
+                    <input type="date" name="date" class="date_today">
+                </div>
+                
+                <div>
+                    <label for="sport_time">time spent on sports and exercise</label>
+                    <input type="number" name="sport_time" min="0" max="24" step=".0001" value="0">
+                </div>
 
-              <label for="sport_time">time spent on sports and exercise</label>
-              <input type="number" name="sport_time" min="0" max="24" step=".0001" value="0">
+                <div>
+                    <label for="study_time">time spent studying</label>
+                    <input type="number" name="study_time" min="0" max="24" step=".0001" value="0">
+                </div>
 
-              <label for="study_time">time spent studying</label>
-              <input type="number" name="study_time" min="0" max="24" step=".0001" value="0">
+                <div>
+                    <label for="eating">regularity and quality of eating</label>
+                    <input type="number" name="eating" min="1" max="5" value="1" step="1">
+                </div>
 
-              <label for="eating">regularity and quality of eating</label>
-              <input type="number" name="eating" min="1" max="5" value="1" step="1">
+                <div>
+                    <label for="mood">generic mood</label>
+                    <input type="number" name="mood" min="1" max="5" value="1" step="1">
+                </div>
 
-              <label for="mood">generic mood</label>
-              <input type="number" name="mood" min="1" max="5" value="1" step="1">
-
-              <input type="submit" value="Submit!" />
+                <div>
+                    <input type="submit" value="Submit!" />
+                </div>
           </form>
-          <a href="/behavior/summary">summary</a>
-          <a href="/auth/login">login</a>
-          <a href="/">landing</a>
-        </div>
-    </body>
-</html>
+
+            <div style="display:flex; margin-top: 20px;">
+                <form action="/behavior/summary">
+                    <input type="submit" value="Summary" style="margin-right: 10px;"/>
+                </form>
+                <form action="/auth/login">
+                    <input type="submit" value="Login" style="margin-right: 10px;"/>
+                </form>
+                <form action="/">
+                    <input type="submit" value="Landing" style="margin-right: 10px;"/>
+                </form>
+            </div>
+<%- include('./partials/footer.ejs') %>

@@ -1,12 +1,6 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>Title</title>
-    <meta charset="utf-8">
+<%- include('./partials/header0.ejs') %>
     <script src="/static/get_today_week_month.js" defer></script>
-  </head>
-  <body>
-        <div id="container">
+    <%- include('./partials/header1.ejs') %>
             <h1>Summary!</h1>
 
             <h2>Weekly average:</h2>
@@ -53,9 +47,15 @@
                 <p>No month summary to show</p>
             <% } %>
 
-            <a href="/behavior/reporting">report</a>
-            <a href="/auth/login">login</a>
-            <a href="/">landing</a>
-        </div>
-    </body>
-</html>
+            <div style="display:flex;">
+                <form action="/behavior/reporting">
+                    <input type="submit" value="Reporting" style="margin-right: 10px;"/>
+                </form>
+                <form action="/auth/login">
+                    <input type="submit" value="Login" style="margin-right: 10px;"/>
+                </form>
+                <form action="/">
+                    <input type="submit" value="Landing" style="margin-right: 10px;"/>
+                </form>
+            </div>
+<%- include('./partials/footer.ejs') %>

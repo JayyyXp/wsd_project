@@ -1,20 +1,31 @@
-<h1>Login!</h1>
+<%- include('./partials/header0.ejs') %>
+    <%- include('./partials/header1.ejs') %>
 
-<%- include('./partials/error_partial.ejs') %>
+            <h1>Login!</h1>
 
-<form method="POST" action="/auth/login">
-    <label for="email">email</label>
-    <input type="email" name="email" />
-   
-    <label for="password">password</label>
-    <input type="password" name="password" />
-   
-    <input type="submit" value="Login!" />
-</form>
+            <%- include('./partials/error_partial.ejs') %>
 
-<a href="/auth/register">Register</a>
-<a href="/">Landing</a>
+            <form method="POST" action="/auth/login">
+                <label for="email">email</label>
+                <input type="email" name="email" style="width:300px;" />
+            
+                <label for="password">password</label>
+                <input type="password" name="password" style="width:200px;"/>
 
-<form method="POST" action="/auth/logout">
-    <input type="submit" value="Logout">
-</form>
+            
+                <input type="submit" value="Login!" />
+            </form>
+
+            <div style="display:flex;margin-top: 20px;">
+                <form action="/auth/register">
+                    <input type="submit" value="Register" style="margin-right: 10px;"/>
+                </form>
+                <form action="/">
+                    <input type="submit" value="Landing" style="margin-right: 10px;"/>
+                </form>
+
+                <form method="POST" action="/auth/logout">
+                    <input type="submit" value="Logout" style="margin-right: 10px;" />
+                </form>
+            </div>
+<%- include('./partials/footer.ejs') %>

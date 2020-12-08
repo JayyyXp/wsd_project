@@ -1,18 +1,24 @@
-<h1>Register!</h1>
+<%- include('./partials/header0.ejs') %>
+    <%- include('./partials/header1.ejs') %>
 
-<%- include('./partials/error_partial.ejs') %>
+            <h1>Register!</h1>
 
-<form method="POST" action="/auth/register">
-    <label for="email">email</label>
-    <input type="email" name="email" value="<%= email %>"/>
-    
-    <label for="password">password</label>
-    <input type="password" name="password" />
-    
-    <label for="verification">password verification</label>
-    <input type="password" name="verification" />
-    
-    <input type="submit" value="Submit!" />
-</form>
+            <%- include('./partials/error_partial.ejs') %>
 
-<a href="/auth/login">login</a>
+            <form method="POST" action="/auth/register">
+                <label for="email">email</label>
+                <input type="email" name="email" value="<%= email %>" style="margin-right: 10px;"/>
+                
+                <label for="password">password</label>
+                <input type="password" name="password" style="margin-right: 10px;"/>
+                
+                <label for="verification">password verification</label>
+                <input type="password" name="verification" style="margin-right: 10px;"/>
+                
+                <input type="submit" value="Submit!" style="margin-right: 10px;"/>
+            </form>
+
+            <form action="/auth/login" style="margin-top: 20px;">
+                <input type="submit" value="Login" />
+            </form>
+<%- include('./partials/footer.ejs') %>
