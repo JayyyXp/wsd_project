@@ -9,10 +9,12 @@ const validateReportMorningData = async(user_id, sleep_duration, sleep_quality, 
     const query = "SELECT * FROM morning WHERE user_id = $1 AND date = $2;"
     const res = await executeQuery(query, user_id, date);
     if (res.rowCount > 0) {
-        errors.push(`A morning report for day ${date} found, log updated`)
+        errors.push(`A morning report for day ${date} found, log updated`);
 
         const query = "DELETE FROM morning WHERE user_id = $1 AND date = $2;"
         await executeQuery(query, user_id, date);
+    } else {
+        errors.push(`A morning report for day ${date} done`);
     }
 
     return errors;

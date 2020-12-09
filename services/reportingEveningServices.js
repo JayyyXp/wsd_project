@@ -13,6 +13,8 @@ const validateReportEveningData = async(user_id, sport_time, study_time, eating,
 
         const query = "DELETE FROM evening WHERE user_id = $1 AND date = $2;"
         await executeQuery(query, user_id, date);
+    }  else {
+        errors.push(`A evening report for day ${date} done`);
     }
 
     return errors;
