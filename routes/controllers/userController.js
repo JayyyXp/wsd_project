@@ -18,7 +18,7 @@ const showRegistrationForm = async({render, session}) => {
     render('register.ejs', data);
 }
 
-const postRegistrationForm = async({render, request, response}) => {
+const postRegistrationForm = async({render, request, response, session}) => {
     const body = request.body();
     const params = await body.value;
     
