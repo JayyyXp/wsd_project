@@ -19,16 +19,19 @@
                 </div>
             </form>
 
-            <div style="display:flex;margin-top: 20px;">
-                <form action="/auth/register">
-                    <input type="submit" value="Register" style="margin-right: 10px;"/>
-                </form>
-                <form action="/">
-                    <input type="submit" value="Landing" style="margin-right: 10px;"/>
-                </form>
+            <div style="margin-top: 20px;">
+                <h6>Navigate to</h6>
+                <div style="display:flex;">
+                    <form action="/auth/register">
+                        <input type="submit" value="Register" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/">
+                        <input type="submit" value="Landing" style="margin-right: 10px;"/>
+                    </form>
 
-                <form method="POST" action="/auth/logout">
-                    <input type="submit" value="Logout" style="margin-right: 10px;" />
-                </form>
+                    <form method="POST" action="/auth/logout">
+                        <input type="submit" value="Logout" style="margin-right: 10px;" />
+                    </form>
+                </div>
             </div>
 <%- include('./partials/footer.ejs') %>

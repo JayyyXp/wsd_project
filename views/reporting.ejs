@@ -66,15 +66,18 @@
                 </div>
           </form>
 
-            <div style="display:flex; margin-top: 20px;">
-                <form action="/behavior/summary">
-                    <input type="submit" value="Summary" style="margin-right: 10px;"/>
-                </form>
-                <form action="/auth/login">
-                    <input type="submit" value="Login" style="margin-right: 10px;"/>
-                </form>
-                <form action="/">
-                    <input type="submit" value="Landing" style="margin-right: 10px;"/>
-                </form>
+            <div style="margin-top: 20px;">
+                <h6>Navigate to</h6>
+                <div style="display:flex;">
+                    <form action="/behavior/summary">
+                        <input type="submit" value="Summary" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/auth/login">
+                        <input type="submit" value="Login" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/">
+                        <input type="submit" value="Landing" style="margin-right: 10px;"/>
+                    </form>
+                </div>
             </div>
 <%- include('./partials/footer.ejs') %>

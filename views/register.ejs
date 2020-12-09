@@ -8,19 +8,22 @@
             <form method="POST" action="/auth/register">
                 <div style="margin-top: 15px;">
                     <label for="email">email</label>
-                    <input type="email" name="email" value="<%= email %>" />
+                    <input type="email" name="email" value="<%= email %>" style="width:300px;border: 1px solid #000000 !important;"/>
                     
                     <label for="password">password</label>
-                    <input type="password" name="password" />
+                    <input type="password" name="password" style="border: 1px solid #000000 !important;" />
                     
                     <label for="verification">password verification</label>
-                    <input type="password" name="verification" />
+                    <input type="password" name="verification" style="border: 1px solid #000000 !important;"/>
                 </div>
 
                 <input type="submit" value="Submit!" />
             </form>
 
-            <form action="/auth/login" style="margin-top: 20px;">
-                <input type="submit" value="Login" />
-            </form>
+            <div style="margin-top: 20px;">
+                <h6>Navigate to</h6>
+                <form action="/auth/login">
+                    <input type="submit" value="Login" />
+                </form>
+            </div>
 <%- include('./partials/footer.ejs') %>

@@ -8,7 +8,7 @@
 
             <form method="POST" action="/behavior/summary/week">
                 <label for="week">Get summary for week</label>
-                <input type="week" name="week" id="week">
+                <input type="week" name="week" id="week" style="border: 1px solid #000000 !important;">
 
                 <input type="submit" value="Submit!" />
             </form>
@@ -30,7 +30,7 @@
 
             <form method="POST" action="/behavior/summary/month">
                 <label for="month">Get summary for month</label>
-                <input type="month" name="month" id="month">
+                <input type="month" name="month" id="month" style="border: 1px solid #000000 !important;">
 
                 <input type="submit" value="Submit!" />
             </form>
@@ -47,15 +47,18 @@
                 <p>No month summary to show</p>
             <% } %>
 
-            <div style="display:flex;">
-                <form action="/behavior/reporting">
-                    <input type="submit" value="Reporting" style="margin-right: 10px;"/>
-                </form>
-                <form action="/auth/login">
-                    <input type="submit" value="Login" style="margin-right: 10px;"/>
-                </form>
-                <form action="/">
-                    <input type="submit" value="Landing" style="margin-right: 10px;"/>
-                </form>
+            <div style="margin-top: 20px;">
+                <h6>Navigate to</h6>
+                <div style="display:flex;">
+                    <form action="/behavior/reporting">
+                        <input type="submit" value="Reporting" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/auth/login">
+                        <input type="submit" value="Login" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/">
+                        <input type="submit" value="Landing" style="margin-right: 10px;"/>
+                    </form>
+                </div>
             </div>
 <%- include('./partials/footer.ejs') %>

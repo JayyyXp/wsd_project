@@ -46,7 +46,7 @@ const postRegistrationForm = async({render, request, response, session}) => {
       const hash = await bcrypt.hash(password); // import
       await service.adduserToUserTable(email, hash);
   
-      response.body = 'Registration successful!';
+      response.redirect('/auth/login');
     }
   };
 

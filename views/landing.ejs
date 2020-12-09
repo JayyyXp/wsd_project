@@ -11,20 +11,23 @@
             </ul>
             <p><%= message %> </p>
 
-            <div style="display:flex;margin-top: 20px;">
-                <form action="/auth/register">
-                    <input type="submit" value="Register" style="margin-right: 10px;"/>
-                </form>
-                <form action="/auth/login">
-                    <input type="submit" value="Login" style="margin-right: 10px;"/>
-                </form>
-                <form action="/behavior/summary">
-                    <input type="submit" value="Summary" style="margin-right: 10px;"/>
-                </form>
-                <form action="/behavior/reporting">
-                    <input type="submit" value="Reporting" style="margin-right: 10px;"/>
+            <div style="margin-top: 20px;">
+                <h6>Navigate to</h6>
+                <div style="display:flex;">
+                    <form action="/auth/register">
+                        <input type="submit" value="Register" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/auth/login">
+                        <input type="submit" value="Login" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/behavior/summary">
+                        <input type="submit" value="Summary" style="margin-right: 10px;"/>
+                    </form>
+                    <form action="/behavior/reporting">
+                        <input type="submit" value="Reporting" style="margin-right: 10px;"/>
 
-                </form>
+                    </form>
+                </div>
             </div>
             
 <%- include('./partials/footer.ejs') %>
