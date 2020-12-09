@@ -1,4 +1,6 @@
 import * as service from "../../services/reportingEveningServices.js";
+import * as util from "../../utils/checkUserTodayReport.js";
+
 
 
 const postReportingEveningForm = async({session, render, request, response}) => {
@@ -14,6 +16,9 @@ const postReportingEveningForm = async({session, render, request, response}) => 
     const mood = params.get('mood');
     const date = params.get('date');
 
+    const today_report = await util.checkUserTodayReport(session);
+
+
     // Validate data    
     const errors = await service.validateReportEveningData(user_id, sport_time, study_time, eating, mood, date);
 
@@ -21,7 +26,14 @@ const postReportingEveningForm = async({session, render, request, response}) => 
 
     await service.addReportEveningToEveningTable(user_id, sport_time, study_time, eating, mood, date);
 
-    render('reporting.ejs', {errors: errors, log_email: user.email});
+    const data = {
+        errors: errors, 
+        log_email: user.email,
+        morning_report: today_report.morning_report,
+        evening_report: today_report.evening_report
+    }
+
+    render('reporting.ejs', data);
     //response.redirect('/behavior/reporting');
 }
 
