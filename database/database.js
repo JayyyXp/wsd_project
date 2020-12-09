@@ -1,15 +1,4 @@
-import { Client } from "../deps.js";
-import { config, connectionPool } from "../config/config.js";
-
-// For local stuff 
-/* 
-const getClient = () => {
-  return new Client(config.database);
-}
- */
-
-// For heroku
-
+import { connectionPool } from "../config/config.js";
 
 // For local
 const executeQuery = async(query, ...params) => {
