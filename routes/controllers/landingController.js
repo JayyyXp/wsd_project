@@ -14,7 +14,12 @@ const showLandingPage = async({render, session}) => {
     const res_today = await service.getAvgMoodForDay(date_today);
     const res_yesterday = await service.getAvgMoodForDay(date_yesterday);
 
-    const message =  (res_today >= res_yesterday) ? 'things are looking bright today' : 'things are looking gloomy today';
+    let message = 'everyday is the same...'
+    if (res_today > res_yesterday){
+        message = 'things are looking bright today';
+    } else if (res_today < res_yesterday) {
+        message = 'things are looking gloomy today';
+    }
 
     console.log(res_today.day_mood_avg);
     const data = {
