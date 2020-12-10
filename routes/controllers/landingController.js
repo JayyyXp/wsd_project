@@ -21,8 +21,6 @@ const showLandingPage = async({render, session}) => {
         message = 'things are looking gloomy today';
     }
 
-
-    console.log(res_today.day_mood_avg);
     const data = {
         day_mood_avg: res_today.day_mood_avg,
         res_yesterday: res_yesterday.day_mood_avg,
