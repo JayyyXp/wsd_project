@@ -16,15 +16,14 @@ const postReportingEveningForm = async({session, render, request, response}) => 
     const mood = params.get('mood');
     const date = params.get('date');
 
-    const today_report = await util.checkUserTodayReport(session);
-
-
     // Validate data    
     const errors = await service.validateReportEveningData(user_id, sport_time, study_time, eating, mood, date);
 
     // Send data to database
 
     await service.addReportEveningToEveningTable(user_id, sport_time, study_time, eating, mood, date);
+    const today_report = await util.checkUserTodayReport(session);
+
 
     const data = {
         errors: errors, 
