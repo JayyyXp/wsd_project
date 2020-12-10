@@ -14,7 +14,7 @@ const requestTimingMiddleware = async({ request, session}, next) => {
   const ms = Date.now() - start;
   const user = await session.get('user'); 
   const id = (user) ? user.id : 'anonymous';
-  console.log(`time: ${start}, 
+  console.log(`timestamp: ${Date()}, 
               method: ${request.method},
               path:  ${request.url.pathname},
               user_id: ${id},
