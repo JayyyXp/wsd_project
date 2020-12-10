@@ -1,28 +1,29 @@
 import * as service from "../../services/summaryServices.js";
-
+import * as util from "../../utils/isNotUnNull.js";
 
 const showSummaryForm = async({render, session}) => {
 
     const user = await session.get('user');
 
     const default_data = await service.getdefaultSummaryData(user.id);
+
     const data = {
         week_summary: 'last week (7 days)',
         month_summary: 'last month (30 days)',
         
         week: {
-            sleep_duration_week_avg: (default_data.sleep_duration_week_avg) ? default_data.sleep_duration_week_avg : 'not found',
-            sport_time_week_avg: (default_data.sport_time_week_avg) ? default_data.sport_time_week_avg : 'not found',
-            study_time_week_avg: (default_data.study_time_week_avg) ? default_data.study_time_week_avg : 'not found',
-            sleep_quality_week_avg: (default_data.sleep_quality_week_avg) ? default_data.sleep_quality_week_avg : 'not found',
-            mood_week_avg: (default_data.mood_week_avg) ? default_data.mood_week_avg : 'not found'
+            sleep_duration_week_avg: (util.isNotUnNull(default_data.sleep_duration_week_avg)) ? Number(default_data.sleep_duration_week_avg) : 'not found',
+            sport_time_week_avg: (util.isNotUnNull(default_data.sport_time_week_avg)) ? Number(default_data.sport_time_week_avg) : 'not found',
+            study_time_week_avg: (util.isNotUnNull(default_data.study_time_week_avg)) ? Number(default_data.study_time_week_avg) : 'not found',
+            sleep_quality_week_avg: (util.isNotUnNull(default_data.sleep_quality_week_avg)) ? Number(default_data.sleep_quality_week_avg) : 'not found',
+            mood_week_avg: (util.isNotUnNull(default_data.mood_week_avg)) ? Number(default_data.mood_week_avg) : 'not found'
         },
         month: {
-            sleep_duration_month_avg: (default_data.sleep_duration_month_avg) ? default_data.sleep_duration_month_avg : 'not found',
-            sport_time_month_avg: (default_data.sport_time_month_avg) ? default_data.sport_time_month_avg : 'not found',
-            study_time_month_avg: (default_data.study_time_month_avg) ? default_data.study_time_month_avg : 'not found',
-            sleep_quality_month_avg: (default_data.sleep_quality_month_avg) ? default_data.sleep_quality_month_avg : 'not found',
-            mood_month_avg: (default_data.mood_month_avg) ? default_data.mood_month_avg : 'not found'
+            sleep_duration_month_avg: (util.isNotUnNull(default_data.sleep_duration_month_avg)) ? Number(default_data.sleep_duration_month_avg) : 'not found',
+            sport_time_month_avg: (util.isNotUnNull(default_data.sport_time_month_avg)) ? Number(default_data.sport_time_month_avg) : 'not found',
+            study_time_month_avg: (util.isNotUnNull(default_data.study_time_month_avg)) ? Number(default_data.study_time_month_avg) : 'not found',
+            sleep_quality_month_avg: (util.isNotUnNull(default_data.sleep_quality_month_avg)) ? Number(default_data.sleep_quality_month_avg) : 'not found',
+            mood_month_avg: (util.isNotUnNull(default_data.mood_month_avg)) ? Number(default_data.mood_month_avg) : 'not found'
         },
         log_email: user.email
     }
@@ -45,11 +46,11 @@ const showSummaryWeekForm = async({render, request, session}) => {
         month_summary: 'not selected',
         
         week: {
-            sleep_duration_week_avg: (week_data.sleep_duration_week_avg) ? week_data.sleep_duration_week_avg : 'not found',
-            sport_time_week_avg: (week_data.sport_time_week_avg) ? week_data.sport_time_week_avg : 'not found',
-            study_time_week_avg: (week_data.study_time_week_avg) ? week_data.study_time_week_avg : 'not found',
-            sleep_quality_week_avg: (week_data.sleep_quality_week_avg) ? week_data.sleep_quality_week_avg : 'not found',
-            mood_week_avg: (week_data.mood_week_avg) ? week_data.mood_week_avg : 'not found'
+            sleep_duration_week_avg: (util.isNotUnNull(week_data.sleep_duration_week_avg)) ? Number(week_data.sleep_duration_week_avg) : 'not found',
+            sport_time_week_avg: (util.isNotUnNull(week_data.sport_time_week_avg)) ? Number(week_data.sport_time_week_avg) : 'not found',
+            study_time_week_avg: (util.isNotUnNull(week_data.study_time_week_avg)) ? Number(week_data.study_time_week_avg) : 'not found',
+            sleep_quality_week_avg: (util.isNotUnNull(week_data.sleep_quality_week_avg)) ? Number(week_data.sleep_quality_week_avg) : 'not found',
+            mood_week_avg: (util.isNotUnNull(week_data.mood_week_avg)) ? Number(week_data.mood_week_avg) : 'not found'
         },
         month: {
             sleep_duration_month_avg: null
@@ -78,11 +79,11 @@ const showSummaryMonthForm = async({render, request, session}) => {
             sleep_duration_week_avg: null
         },
         month: {
-            sleep_duration_month_avg: (month_data.sleep_duration_month_avg) ? month_data.sleep_duration_month_avg : 'not found',
-            sport_time_month_avg: (month_data.sport_time_month_avg) ? month_data.sport_time_month_avg : 'not found',
-            study_time_month_avg: (month_data.study_time_month_avg) ? month_data.study_time_month_avg : 'not found',
-            sleep_quality_month_avg: (month_data.sleep_quality_month_avg) ? month_data.sleep_quality_month_avg : 'not found',
-            mood_month_avg: (month_data.mood_month_avg) ? month_data.mood_month_avg : 'not found'
+            sleep_duration_month_avg: (util.isNotUnNull(month_data.sleep_duration_month_avg)) ? Number(month_data.sleep_duration_month_avg) : 'not found',
+            sport_time_month_avg: (util.isNotUnNull(month_data.sport_time_month_avg)) ? Number(month_data.sport_time_month_avg) : 'not found',
+            study_time_month_avg: (util.isNotUnNull(month_data.study_time_month_avg)) ? Number(month_data.study_time_month_avg) : 'not found',
+            sleep_quality_month_avg: (util.isNotUnNull(month_data.sleep_quality_month_avg)) ? Number(month_data.sleep_quality_month_avg) : 'not found',
+            mood_month_avg: (util.isNotUnNull(month_data.mood_month_avg)) ? Number(month_data.mood_month_avg) : 'not found'
         },
         log_email: user.email
     }

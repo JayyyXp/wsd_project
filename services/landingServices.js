@@ -9,13 +9,28 @@ const getAvgMoodForDay = async(date) =>{
         SELECT AVG(evening_mood) AS evening_mood_avg FROM evening WHERE date = $1
         )
         
-        SELECT ( COALESCE(morning_mood_avg, 0) + COALESCE(evening_mood_avg, 0) ) / 2 AS day_mood_avg
+        SELECT morning_mood_avg, evening_mood_avg
         FROM morning, evening 
     `;
 
     const res = await executeQuery(query, date);
+    const res_rows = res.rowsOfObjects()[0];
 
-    return res.rowsOfObjects()[0];
+
+    let  mood_avg = null;
+
+    if (!!res_rows.morning_mood_avg && !res_rows.evening_mood_avg){
+        mood_avg = Number(res_rows.morning_mood_avg);
+    } else if (!res_rows.morning_mood_avg && !!res_rows.evening_mood_avg){
+        mood_avg = Number(res_rows.evening_mood_avg);
+    } else if (!!res_rows.morning_mood_avg && !!res_rows.evening_mood_avg){
+        mood_avg = (Number(res_rows.morning_mood_avg) + Number(res_rows.evening_mood_avg)) / 2;
+    }
+
+    const data = {
+        day_mood_avg: mood_avg
+    }
+    return data;
 }
 
 

@@ -27,7 +27,7 @@ const postLoginForm = async({render, request, response, session}) => {
 
     const data = {
         errors: login_data.errors,
-        log_email: email
+        log_email: null
     }
 
     const user = await session.get('user');

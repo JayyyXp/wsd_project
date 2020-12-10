@@ -31,7 +31,8 @@ const getAvgLastSevenDay = async(request) => {
         sport_time_avg,
         study_time_avg,
         sleep_quality_avg,
-        (morning_mood_avg::decimal + evening_mood_avg ::decimal) / 2 AS mood_avg
+        morning_mood_avg,
+        evening_mood_avg
     FROM
         morning_avg, evening_avg
     `;
@@ -39,9 +40,27 @@ const getAvgLastSevenDay = async(request) => {
     const result = await executeQuery(query, '7');
 
     if (result && result.rowCount > 0) {
-        const resultList = result.rowsOfObjects();
+        const res_rows = result.rowsOfObjects()[0];
+        let  mood_avg = null;
 
-        request.response.body = resultList;
+        if (!!res_rows.morning_mood_avg && !res_rows.evening_mood_avg){
+            mood_avg = Number(res_rows.morning_mood_avg);
+        } else if (!res_rows.morning_mood_avg && !!res_rows.evening_mood_avg){
+            mood_avg = Number(res_rows.evening_mood_avg);
+        } else if (!!res_rows.morning_mood_avg && !!res_rows.evening_mood_avg){
+            mood_avg = (Number(res_rows.morning_mood_avg) + Number(res_rows.evening_mood_avg)) / 2;
+        }
+
+        const data = {
+            sleep_duration_avg: res_rows.sleep_duration_avg,
+            sport_time_avg: res_rows.sport_time_avg,
+            study_time_avg: res_rows.study_time_avg,
+            sleep_quality_avg: res_rows.sleep_quality_avg,
+            mood_avg: mood_avg
+
+        }
+
+        request.response.body = [data];
 
     } else {
         request.reponse.status = 401;
@@ -85,7 +104,8 @@ const getAvgForDay = async(request) => {
         sport_time_avg,
         study_time_avg,
         sleep_quality_avg,
-        (morning_mood_avg::decimal + evening_mood_avg ::decimal) / 2 AS mood_avg
+        morning_mood_avg,
+        evening_mood_avg
     FROM
         morning_avg, evening_avg
     `;
@@ -93,10 +113,28 @@ const getAvgForDay = async(request) => {
     const result = await executeQuery(query, day, month, year);
 
     if (result && result.rowCount > 0) {
-        const resultList = result.rowsOfObjects();
-        console.log(resultList);
+        const res_rows = result.rowsOfObjects()[0];
+        let  mood_avg = null;
 
-        request.response.body = resultList;
+        if (!!res_rows.morning_mood_avg && !res_rows.evening_mood_avg){
+            mood_avg = Number(res_rows.morning_mood_avg);
+        } else if (!res_rows.morning_mood_avg && !!res_rows.evening_mood_avg){
+            mood_avg = Number(res_rows.evening_mood_avg);
+        } else if (!!res_rows.morning_mood_avg && !!res_rows.evening_mood_avg){
+            mood_avg = (Number(res_rows.morning_mood_avg) + Number(res_rows.evening_mood_avg)) / 2;
+        }
+
+        const data = {
+            sleep_duration_avg: res_rows.sleep_duration_avg,
+            sport_time_avg: res_rows.sport_time_avg,
+            study_time_avg: res_rows.study_time_avg,
+            sleep_quality_avg: res_rows.sleep_quality_avg,
+            mood_avg: mood_avg
+
+        }
+
+        request.response.body = [data];
+
 
     } else {
         request.reponse.status = 401;

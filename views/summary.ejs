@@ -13,7 +13,7 @@
                 <input type="submit" value="Submit!" />
             </form>
 
-            <% if (week.sleep_duration_week_avg) { %>
+            <% if ((typeof(week.sleep_duration_week_avg) !== "undefined") && (week.sleep_duration_week_avg !== null)) { %>
                 <ul>
                     <li>Average sleep duration: <%= week.sleep_duration_week_avg %> </li>
                     <li>Average time spent on sports and exercise: <%= week.sport_time_week_avg %> </li>
@@ -35,7 +35,7 @@
                 <input type="submit" value="Submit!" />
             </form>
 
-            <% if (month.sleep_duration_month_avg) { %>
+            <% if ((typeof(month.sleep_duration_month_avg) !== "undefined") && (month.sleep_duration_month_avg !== null)) { %>
                 <ul>
                     <li>Average sleep duration: <%= month.sleep_duration_month_avg %> </li>
                     <li>Average time spent on sports and exercise: <%= month.sport_time_month_avg %> </li>

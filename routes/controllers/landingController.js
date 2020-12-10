@@ -22,8 +22,8 @@ const showLandingPage = async({render, session}) => {
     }
 
     const data = {
-        day_mood_avg: res_today.day_mood_avg,
-        res_yesterday: res_yesterday.day_mood_avg,
+        day_mood_avg: (!res_today.day_mood_avg) ? 'not found' : res_today.day_mood_avg,
+        res_yesterday: (!res_yesterday.day_mood_avg) ? 'not found' : res_yesterday.day_mood_avg,
         message: message,
         log_email: null
     }
