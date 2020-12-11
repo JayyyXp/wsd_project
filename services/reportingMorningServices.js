@@ -3,7 +3,6 @@ import { executeQuery } from "../database/database.js";
 const validateReportMorningData = async(user_id, sleep_duration, sleep_quality, mood, date) =>{
 
     const errors = [];
-    //TODO: check rest of parameters is ok ?
 
     // user has already submitted morning report for this day
     const query = "SELECT * FROM morning WHERE user_id = $1 AND date = $2;"

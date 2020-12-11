@@ -6,12 +6,6 @@ import { Session } from "./deps.js";
 import "https://deno.land/x/dotenv/load.ts";
 
 
-// Heroku
-let port = 7777;
-if (Deno.args.length > 0) {
-  const lastArgument = Deno.args[Deno.args.length - 1];
-  port = Number(lastArgument);
-}
 
 const app = new Application();
 
@@ -32,10 +26,7 @@ app.use(middleware.serveStaticFilesMiddleware);
 
 app.use(router.routes());
 
-//app.listen({ port: 7777 });
-
-if (!Deno.env.get('TEST_ENVIRONMENT')) {
-  app.listen({ port: port });
-}
-      
+let port = 7777;
+app.listen({ port: port });
+  
 export default app;

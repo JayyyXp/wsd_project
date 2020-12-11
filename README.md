@@ -18,3 +18,7 @@ The app is found [here](https://my-wsdproject.herokuapp.com/)
 ## TO RUN THE TESTS
 
 There are no tests to run
+
+### Problems?
+
+You can [contact](https://t.me/hopplus) me @hopplus in Telegram

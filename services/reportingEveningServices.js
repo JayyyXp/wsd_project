@@ -2,7 +2,6 @@ import { executeQuery } from "../database/database.js";
 
 const validateReportEveningData = async(user_id, sport_time, study_time, eating, mood, date) =>{
 
-    //TODO: check rest of parameters is ok ?
     const errors = [];
 
     // user has already submitted morning report for this day
