@@ -4,6 +4,7 @@ import * as middleware from './middlewares/middlewares.js';
 import { viewEngine, engineFactory, adapterFactory } from "./deps.js";
 import { Session } from "./deps.js";
 import { oakCors  } from "./deps.js";
+import "https://deno.land/x/dotenv/load.ts";
 
 
 
