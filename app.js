@@ -3,7 +3,7 @@ import { router } from "./routes/routes.js";
 import * as middleware from './middlewares/middlewares.js';
 import { viewEngine, engineFactory, adapterFactory } from "./deps.js";
 import { Session } from "./deps.js";
-import "https://deno.land/x/dotenv/load.ts";
+import { oakCors  } from "./deps.js";
 
 
 
@@ -24,6 +24,7 @@ app.use(middleware.accessControlsMiddleware);
 app.use(middleware.requestTimingMiddleware);
 app.use(middleware.serveStaticFilesMiddleware);
 
+app.use(oakCors());
 app.use(router.routes());
 
 let port = 7777;
